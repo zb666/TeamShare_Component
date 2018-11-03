@@ -1,5 +1,7 @@
 //if (isMoudle) {
-    apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 //}else {
 //    apply plugin: 'com.android.application'
 //}
@@ -21,12 +23,17 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //添加一条boolean类型的变量
-        buildConfigField("boolean","isMoudle",String.valueOf(isMoudle))
+        buildConfigField("boolean", "isMoudle", String.valueOf(isMoudle))
 
         //组件模式下appId的配置
 //        if (!isMoudle){
 //            applicationId appId['moudlea']
 //        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -41,8 +48,12 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':moudle_common')
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

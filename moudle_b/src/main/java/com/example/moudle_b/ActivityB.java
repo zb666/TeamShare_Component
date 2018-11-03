@@ -6,8 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.dongnao.module2.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 
+@Route(path = "/moudle_b/ActivityB")
 public class ActivityB extends AppCompatActivity {
 
     @Override

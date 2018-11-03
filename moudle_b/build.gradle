@@ -45,6 +45,12 @@ android {
                 }
             }
         }
+        //moudel 切割命名 用于path讯扎该模块
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
 
     }
 
@@ -68,4 +74,6 @@ dependencies {
     if (isMoudle) {
         implementation project(':moudle_common')
     }
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

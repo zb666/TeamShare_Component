@@ -1,2 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.moudle_a" />
+    package="com.example.moudle_a">
+
+    <application>
+        <activity android:name=".MoudleA_Activity"></activity>
+    </application>
+
+</manifest>
