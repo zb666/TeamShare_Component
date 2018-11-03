@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.dongnao.module2.R;
+
 public class ActivityB extends AppCompatActivity {
 
     @Override

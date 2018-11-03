@@ -3,7 +3,7 @@ version = "1.0"
 ext{
     //false 组件模式(自立门户)
     //true 集成模式(旗下子公司)
-    isMoudle = true
+    isMoudle = false
     android = [
             compileSdkVersion:28,
             minSdkVersion:15,
