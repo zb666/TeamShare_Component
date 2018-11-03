@@ -3,10 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <TextView
-    android:id="@+id/tvOnMoudleB"
-    android:maxLength="10"
-    android:ellipsize="end"
-    android:maxLines="2"
+    android:id="@+id/tvB"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 </LinearLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TeamShare_Component</string>
+    <string name="app_app">这是一个App</string>
 </resources>

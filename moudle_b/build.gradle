@@ -1,7 +1,7 @@
 //根据isMoudle进行动态的切换
 if (isMoudle) {
     apply plugin: 'com.android.library'
-}else {
+} else {
     apply plugin: 'com.android.application'
 }
 def cfg = rootProject.ext.android
@@ -18,21 +18,28 @@ android {
 
         //往buildconfig中添加一条boolean类型的数据
         //为了方便在代码中进行切换
-        buildConfigField("boolean","isMoudle",String.valueOf(isMoudle))
+        buildConfigField("boolean", "isMoudle", String.valueOf(isMoudle))
 
         //appId的配置
-        if (!isMoudle){
+        if (!isMoudle) {
             applicationId appId['moudleb']
         }
 
-        sourceSets{
-            main{
-                if (!isMoudle){
+        this.android.sourceSets {
+            main {
+                if (!isMoudle) {
                     //指定清单文件的路径
                     manifest.srcFile 'src/main/onmoudle/AndroidManifest.xml'
                     //指明java文件的路径
-                    java.srcDirs 'src/main/java','src/main/onmoudle/java'
-                }else{
+                    java.srcDirs 'src/main/java', 'src/main/onmoudle/java'
+                    //res 资源切分
+                    res.srcDirs = [
+                            'src/main/res',
+                            'src/main/res-common',
+                            'src/main/res-home',
+                            'src/main/res-style'
+                    ]
+                } else {
                     //作为moudle存在的时候
                     manifest.srcFile 'src/main/AndroidManifest.xml'
                 }
@@ -51,10 +58,14 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //方案1 各自切换成app 仍然会依赖公共区域的资源
+    //方案二 不依赖公共资源区的资源
+    if (isMoudle) {
+        implementation project(':moudle_common')
+    }
 }

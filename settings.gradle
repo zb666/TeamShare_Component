@@ -1,1 +1,1 @@
-include ':app', ':moudle_a', ':moudle_b'
+include ':app', ':moudle_a', ':moudle_b', ':moudle_common'

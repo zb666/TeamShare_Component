@@ -1,8 +1,8 @@
 group = "config"
 version = "1.0"
 ext{
-    //false 组件模式
-    //true 集成模式
+    //false 组件模式(自立门户)
+    //true 集成模式(旗下子公司)
     isMoudle = false
     android = [
             compileSdkVersion:28,

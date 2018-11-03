@@ -1,48 +1,29 @@
-//if (isMoudle) {
-    apply plugin: 'com.android.library'
-//}else {
-//    apply plugin: 'com.android.application'
-//}
+apply plugin: 'com.android.library'
 
 def cfg = rootProject.ext.android
 def appId = rootProject.ext.appId
-//""双引号字符串代表的是 该android中map数据的配置
-println "cfg result ${cfg}"
 
 android {
     compileSdkVersion cfg.compileSdkVersion
-
     defaultConfig {
         minSdkVersion cfg.minSdkVersion
         targetSdkVersion cfg.targetSdkVersion
         versionCode cfg.versionCode
         versionName cfg.versionName
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        //添加一条boolean类型的变量
-        buildConfigField("boolean","isMoudle",String.valueOf(isMoudle))
-
-        //组件模式下appId的配置
-//        if (!isMoudle){
-//            applicationId appId['moudlea']
-//        }
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':moudle_common')
 }
