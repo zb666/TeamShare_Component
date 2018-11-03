@@ -17,9 +17,28 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //往buildconfig中添加一条boolean类型的数据
+        //为了方便在代码中进行切换
+        buildConfigField("boolean","isMoudle",String.valueOf(isMoudle))
+
+        //appId的配置
         if (!isMoudle){
-            applicationId appId['']
+            applicationId appId['moudleb']
         }
+
+        sourceSets{
+            main{
+                if (!isMoudle){
+                    //指定清单文件的路径
+                    manifest.srcFile 'src/main/onmoudle/AndroidManifest.xml'
+                    //指明java文件的路径
+                    java.srcDirs 'src/main/java','src/main/onmoudle/java'
+                }else{
+                    //作为moudle存在的时候
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                }
+            }
+        }
+
     }
 
     buildTypes {

@@ -1,6 +1,11 @@
-apply plugin: 'com.android.library'
+//if (isMoudle) {
+    apply plugin: 'com.android.library'
+//}else {
+//    apply plugin: 'com.android.application'
+//}
 
 def cfg = rootProject.ext.android
+def appId = rootProject.ext.appId
 //""双引号字符串代表的是 该android中map数据的配置
 println "cfg result ${cfg}"
 
@@ -15,6 +20,13 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        //添加一条boolean类型的变量
+        buildConfigField("boolean","isMoudle",String.valueOf(isMoudle))
+
+        //组件模式下appId的配置
+//        if (!isMoudle){
+//            applicationId appId['moudlea']
+//        }
     }
 
     buildTypes {

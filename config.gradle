@@ -14,7 +14,8 @@ ext{
 
     appId = [
             "app":"com.example.mechrevo",
-            "moudlea":"com.example.moudle_a"
+            "moudlea":"com.example.moudle_a",
+            "moudleb":"com.example.moudle_b"
     ]
 
     supportLibrary = '28.0.0'
