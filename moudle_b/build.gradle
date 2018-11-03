@@ -29,9 +29,9 @@ android {
             main {
                 if (!isMoudle) {
                     //指定清单文件的路径
-                    manifest.srcFile 'src/main/onmoudle/AndroidManifest.xml'
+                    manifest.srcFile 'src/main/singleapp/AndroidManifest.xml'
                     //指明java文件的路径
-                    java.srcDirs 'src/main/onmoudle/java','src/main/java'
+                    java.srcDirs 'src/main/singleapp/java','src/main/java'
                     //res 资源切分
                     res.srcDirs = [
                             'src/main/res',
