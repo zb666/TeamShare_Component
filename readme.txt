@@ -24,7 +24,7 @@ TypeElement类型
 
 1 编译时时期扫描注解 AutoService
 2 AbstractProcessor 处理注解,然后进行分组,在不同的组里面
-3 编译时期生成一个java文件，集合里面就塞了这样的数据，路由地址对应这样的对象
+3 javapoet 编译时期生成一个java文件，集合里面就塞了这样的数据，路由地址对应这样的对象
 route path - 》对应class字节码文件
 map映射集合对应一张路由表,然后根据path找寻到地址进行new Intent()进行跳转
 
@@ -69,3 +69,34 @@ map映射集合对应一张路由表,然后根据path找寻到地址进行new In
             ).build().writeTo(filerUtils);
 
 
+具体跳转的执行逻辑
+在ARouter这个类中
+ final Context currentContext = null == context ? mContext : context;
+
+        switch (postcard.getType()) {
+            case ACTIVITY:
+                // Build intent
+                final Intent intent = new Intent(currentContext, postcard.getDestination());
+                intent.putExtras(postcard.getExtras());
+
+                // Set flags.
+                int flags = postcard.getFlags();
+                if (-1 != flags) {
+                    intent.setFlags(flags);
+                } else if (!(currentContext instanceof Activity)) {    // Non activity, need less one flag.
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
+
+                // Set Actions
+                String action = postcard.getAction();
+                if (!TextUtils.isEmpty(action)) {
+                    intent.setAction(action);
+                }
+
+                // Navigation in main looper.
+                runInMainThread(new Runnable() {
+                    @Override
+                    public void run() {
+//look at here                        startActivity(requestCode, currentContext, intent, postcard, callback);
+                    }
+                });
