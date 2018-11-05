@@ -2,6 +2,8 @@
     package="com.example.moudle_b" >
 
     <application>
-        <activity android:name=".ActivityB" />
+        <activity android:name=".ActivityB"
+            />
+
     </application>
 </manifest>
