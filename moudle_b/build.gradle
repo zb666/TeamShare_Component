@@ -32,7 +32,7 @@ android {
                     manifest.srcFile 'src/main/singleapp/AndroidManifest.xml'
                     //指明java文件的路径
                     java.srcDirs 'src/main/singleapp/java','src/main/java'
-                    //res 资源切分
+                    //res资源切分
                     res.srcDirs = [
                             'src/main/res',
                             'src/main/res-common',
